@@ -8,6 +8,6 @@ import java.sql.Timestamp;
 
 
 @Repository
-public interface ServiceRepository extends JpaRepository<ServiceDataResponse, Integer>
+public interface ServiceRepository extends JpaRepository<ServiceDataResponse, Long>
 {
 }

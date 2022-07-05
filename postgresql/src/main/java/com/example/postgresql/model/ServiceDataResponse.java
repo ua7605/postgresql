@@ -1,17 +1,29 @@
 package com.example.postgresql.model;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
+
+import static javax.persistence.GenerationType.SEQUENCE;
 
 
 @Entity(name = "ServiceDataResponse")
 public class ServiceDataResponse
 {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    private Integer id;
+    @SequenceGenerator(
+            name = "service_data_sequence",
+            sequenceName = "service_data_sequence",
+            allocationSize = 1
+    )
+    @GeneratedValue(
+            strategy = SEQUENCE,
+            generator = "service_data_sequence"
+
+    )
+    @Column(
+            name = "id",
+            updatable = false
+    )
+    private Long id;
 
     private String value;
 
@@ -23,9 +35,8 @@ public class ServiceDataResponse
 
     public ServiceDataResponse() {}
 
-    public ServiceDataResponse(Integer id, String value, String unit, String typeServiceID)
+    public ServiceDataResponse(String value, String unit, String typeServiceID)
     {
-        this.id = id;
         this.value = value;
         this.unit = unit;
         this.typeServiceID = typeServiceID;
@@ -57,11 +68,11 @@ public class ServiceDataResponse
         this.typeServiceID = typeServiceID;
     }
 
-    public long getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(Integer id) {
+    public void setId(Long id) {
         this.id = id;
     }
 }
