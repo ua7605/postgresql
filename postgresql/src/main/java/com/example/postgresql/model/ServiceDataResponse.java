@@ -6,7 +6,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
 
-@Entity
+@Entity(name = "ServiceDataResponse")
 public class ServiceDataResponse
 {
     @Id
